@@ -20,34 +20,92 @@
 #include <dt-bindings/zmk/ext_power.h>
 #include <dt-bindings/zmk/rgb.h>
 
+// ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
 #define BASE   0
-#define LOWER  1
-#define RAISE  2
-#define ADJUST 3
+#define L1  1
+#define L2  2
+#define L3 3
 
+// ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
 &mt {
     flavor = "tap-preferred";
     tapping_term_ms = <180>;
 };
 
+// ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+// ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 / {
     behaviors {
-        hm: homerow_mods {
+// ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+// HOLD TAP
+
+        h_h: hold_tap_hold_prefered {
             compatible = "zmk,behavior-hold-tap";
-            label = "HOMEROW_MODS";
+            label = "HT_HP";
+            #binding-cells = <2>;
+            tapping-term-ms = <150>;
+            quick_tap_ms = <0>;
+            flavor = "hold-preferred";
+            bindings = <&kp>, <&kp>;
+        };
+        h_b: ht_bl {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HT_BL";
+            #binding-cells = <2>;
+            tapping-term-ms = <150>;
+            quick_tap_ms = <0>;
+            flavor = "balanced";
+            bindings = <&kp>, <&kp>;
+        };
+        h_t: ht_tp {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HT_TP";
             #binding-cells = <2>;
             tapping-term-ms = <150>;
             quick_tap_ms = <0>;
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
         };
-         dot_excl: dot_excl {
+
+
+        lay_re: layer_repeat {
+            compatible = "zmk,behavior-hold-tap";
+            label = "LT_REP";
+            #binding-cells = <1>;
+            tapping-term-ms = <100>;
+            quick_tap_ms = <0>;
+            flavor = "balanced";
+            bindings = <&mo>, <&key_repeat>;
+        };
+
+// ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+// MACRO
+
+	spc_sh: space_shift_macro {
+		compatible = "zmk,behavior-macro";
+		label = "MACRO1";
+		#binding-cells = <0>;
+		bindings = <&macro_tap &kp SPACE>, <&macro_tap &sk RSHIFT>;
+	};
+       
+// ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+// MOD MORPH
+
+        l_t_1: left_thumb_1 {
             compatible = "zmk,behavior-mod-morph";
-            label = "DOT_EXCL";
+            label = "LEFT_THUMB";
             #binding-cells = <0>;
-            bindings = <&kp DOT>, <&kp EXCL>;
+            bindings = <&lay_re 1>, <&lay_re 4>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+        
+        dot_amps: dot_amps {
+            compatible = "zmk,behavior-mod-morph";
+            label = "DOT_AMPS";
+            #binding-cells = <0>;
+            bindings = <&kp DOT>, <&kp AMPS>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
@@ -59,11 +117,18 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
         
-        spc_ent: spc_enter {
+        bsp1: bsp1 {
             compatible = "zmk,behavior-mod-morph";
-            label = "SPC_ENTER";
+            label = "BSP1";
             #binding-cells = <0>;
-            bindings = <&kp SPC>, <&kp ENTER>;
+            bindings = <&kp BSPC>, <&kp LC(BSPC)>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+        del1: del1 {
+            compatible = "zmk,behavior-mod-morph";
+            label = "DEL1";
+            #binding-cells = <0>;
+            bindings = <&kp DEL>, <&kp LC(DEL)>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
@@ -78,6 +143,9 @@
 
     };
 
+// ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+// ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+
     combos {
         compatible = "zmk,combos";
 
@@ -91,7 +159,8 @@
     };
 
 
-
+// ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+// ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
         keymap {
                 compatible = "zmk,keymap";
 // ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
@@ -102,26 +171,26 @@
 label= "BASE"                                                  ;
 // └───────────────────────────────────────────────────────────┘
 /*           ┌─────────┬─────────┬─────────┬─────────┬─────────┐                    ┌─────────┬─────────┬─────────┬─────────┬─────────┐
-             │    W    │    F    │    M    │    P    │    V    │  5                 │    /    │    .    │    Q    │   " ?   │   ' !   │   10
-             │         │         │         │         │         │                    │         │         │         │         │         │         
-             │         │         │         │         │         │                    │         │         │         │         │         │         
+             │    J    │    g    │    M    │    P    │    V    │  5                 │ ? QUIKSW│   . @   │   / \   │   "     │    '    │   10
+             │         │    7    │    8    │    9    │         │                    │         │    .    │    /    │         │         │         
+             │         │         │         │         │         │                    │         │   POS1  │  PGdn   │   PGup  │   End   │         
              │         │         │         │         │         │                    │         │         │         │         │         │         
              │         │         │         │         │         │                    │         │         │         │         │         │         
    ┌─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤                    ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┐
-   │   TAB   │    R    │    S    │    N    │    T    │    B    │  16                │    ,    │    A    │    E    │    I    │    H    │    J    │  22
+   │  HASH   │    R    │    S    │    N    │    D    │    B    │  16                │   ,  [  │    A    │    E    │    I    │    H    │    Z    │  22
+   │         │    0    │    1    │    2    │    3    │         │                    │    ,    │         │         │         │         │         │
+   │         │   ALT   │   WIN   │   STRG  │  Shift  │         │                    │         │   <-    │   DOWN  │    UP   │    ->   │         │
    │         │         │         │         │         │         │                    │         │         │         │         │         │         │
-   │         │         │         │         │         │         │                    │         │         │         │         │         │         │
-   │         │         │         │         │         │         │                    │         │         │         │         │         │         │
-   │         │         │         │         │         │         │                    │         │         │         │         │         │         │
+   │         │         │         │         │         │         │                    │         │    Ä    │         │         │         │         │
    ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤╭────────╮╭────────╮├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤
-   │   DEL   │    X    │    C    │    L    │    D    │    G    ││  MUTE  ││PLY/PSE ││    -    │    U    │    O    │    Y    │    K    │    Z    │  36
-   │         │         │         │         │         │         │╰────────╯╰────────╯│         │         │         │         │         │         │
+   │         │    X    │    F    │    L    │    C    │    W    ││  MUTE  ││PLY/PSE ││   - _   │    U    │    O    │    Y    │    K    │    Q    │  36
+   │         │         │    4    │    5    │    6    │         │╰────────╯╰────────╯│    -    │         │         │         │         │         │
    │         │         │         │         │         │         │ 28                 │         │         │         │         │         │         │
-   │         │         │         │         │         │         │                    │         │         │         │         │         │         │
-   │         │         │         │         │         │         │                    │         │         │         │         │         │         │
+   │         │         │         │         │         │         │                    │         │ <-SCROLL│ SCROLLdn│SCROLLup │SCROLL-> │         │
+   │         │         │         │         │         │         │                    │         │    Ü    │    Ö    │         │         │         │
    └─────────┴─────────┴─────────┼─────────┼─────────┼─────────┼────────────────────┼─────────┼─────────┼─────────┼─────────┴─────────┴─────────┘
-                                 │    L2   │  Shift  │    L1   │         ││ CMD/WIN │    L3   │Spc(Ent) │  BSPCE  │  44
-                                 │         │         │         │         ││         │         │         │         │ 
+                                 │Rep(L1)L4│     T   │   BSPC  │   DEL   ││ CMD/WIN │ENT(ShiF)│ Spc(L2) │Spc_sh│  44
+                                 │         │         │         │         ││         │  ENTER  │    (L3) │   TAB   │ 
                                  │         │         │         │         ││         │         │         │         │ 
                                  │         │         │         │         ││         │         │         │         │ 
                                  │         │         │         │         ││         │         │         │         │ 
@@ -129,10 +198,10 @@ label= "BASE"                                                  ;
                                  └─────────┴─────────┴─────────┴─────────┘└─────────┴─────────┴─────────┴─────────┘ */ 
  bindings = <
  //╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷                     
-              &kp W     &lt FN F  &kp M     &kp P     &kp V                          &kp SEMI  &dot_excl &kp FSLH  &lt FN BSLH &kp SQT
-    &kp TAB   &mt LSHFT R &mt LALT S &mt LCTRL N &mt LGUI T &kp B                 &comma_pipe &mt RGUI A &mt RCTRL E &mt RALT I &mt RSHFT H &kp J
-    &kp DEL   &kp X     &kp C     &kp L     &lt SYM D &kp G     &trans     &trans    &kp MINUS &lt SYM U &kp O     &kp Y     &kp K     &kp Z
-                                  &kp LCTRL &mo LOWER &skq RSHFT &kp LALT  &kp LGUI &kp RET    &spc_ent  &kp BSPC 
+              &kp J    &kp G     &kp M      &kp P     &kp V                          &kp SEMI  &dot_amps &kp SLASH &kp DQT   &kp SQT
+    &kp HASH &h_b LSHFT R &h_b LALT S &h_b LCTRL N &h_b LGUI D &kp B              &comma_pipe &h_b RGUI A &h_b RCTRL E &h_b RALT I &h_b RSHFT H &kp Z
+    &kp DEL   &kp X     &kp F     &kp L     &kp C     &kp W     &trans     &trans    &kp MINUS &kp U     &kp O     &kp Y     &kp K     &kp Q
+                                  &l_t_1    &kp T     &bsp1     &del1      &kp LGUI  &h_h RSHIFT RET &kp SPC  &spc_sh 
                         >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
                 };
@@ -141,7 +210,7 @@ label= "BASE"                                                  ;
 
 
                 lower_layer {
-label= "LOWER"                                                 ;
+label= "L1"                                                 ;
  bindings = <
  //╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷
     &ext_power EP_TOG   &trans    &kp UP    &trans    &kp LBRC                       &kp RBRC  &kp KP_N7 &kp KP_N8 &kp KP_N9 &kp KP_PLUS
@@ -156,7 +225,7 @@ label= "LOWER"                                                 ;
 
 
                 raise_layer {
-label= "RAISE"                                                 ;
+label= "L2"                                                 ;
  bindings = <
  //╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷
               &trans    &trans    &trans    &trans    &trans                         &trans    &trans    &kp RA(U) &trans    &trans     
@@ -171,7 +240,7 @@ label= "RAISE"                                                 ;
 
 
                 adjust_layer {
-label= "ADJUST"                                                ;
+label= "L3"                                                ;
  bindings = <
  //╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷
              &bt BT_CLR &trans    &trans    &trans    &trans                         &trans    &trans    &trans    &trans    &bt BT_CLR   
